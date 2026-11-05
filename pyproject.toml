@@ -1,0 +1,21 @@
+[project]
+name = "feederrisk"
+version = "0.1.0"
+description = "Battery or reinforcement on an open medium-voltage feeder: two-stage planning under uncertain weather, prices, DER and load, with network limits, CVaR and value of information"
+requires-python = ">=3.11"
+dependencies = ["numpy>=2.0", "pandas>=2.2", "scipy>=1.13", "pyarrow>=15"]
+
+[project.optional-dependencies]
+grid = ["pandapower>=3.0", "simbench>=1.5"]
+test = ["pytest>=8"]
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]

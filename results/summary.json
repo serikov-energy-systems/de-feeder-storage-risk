@@ -1,0 +1,214 @@
+{
+  "best_plan": "trunk",
+  "expected_cost": 34931.59224309919,
+  "central_plan": "nothing",
+  "vss": 18780.828513465487,
+  "evpi_total": 14334.653623853173,
+  "evpi_weather": 740.9770415227031,
+  "evpi_price": 0.0,
+  "evpi_der": 14269.120689371208,
+  "evpi_load": 0.0,
+  "n_plans": 36,
+  "n_scenarios": 81,
+  "risk_sweep": {
+    "0.0": {
+      "plan": "trunk",
+      "expected": 34931.59224309919,
+      "cvar90": 36511.54481534518
+    },
+    "0.25": {
+      "plan": "trunk",
+      "expected": 34931.59224309919,
+      "cvar90": 36511.54481534518
+    },
+    "0.5": {
+      "plan": "trunk",
+      "expected": 34931.59224309919,
+      "cvar90": 36511.54481534518
+    },
+    "0.75": {
+      "plan": "trunk",
+      "expected": 34931.59224309919,
+      "cvar90": 36511.54481534518
+    },
+    "1.0": {
+      "plan": "trunk",
+      "expected": 34931.59224309919,
+      "cvar90": 36511.54481534518
+    }
+  },
+  "evsi_der": {
+    "0.5": 0.0,
+    "0.6": 0.0,
+    "0.7": 2213.767825114519,
+    "0.8": 6232.218779866758,
+    "0.9": 10250.66973461898,
+    "1.0": 14269.120689371208
+  },
+  "evsi_price": {
+    "0.5": 0.0,
+    "0.6": 0.0,
+    "0.7": 0.0,
+    "0.8": 0.0,
+    "0.9": 0.0,
+    "1.0": 0.0
+  },
+  "best_by_der": {
+    "low": {
+      "plan": "nothing",
+      "cost": 0.0
+    },
+    "mid": {
+      "plan": "nothing",
+      "cost": 23387.600220194745
+    },
+    "high": {
+      "plan": "trunk",
+      "cost": 35874.68577452244
+    }
+  },
+  "best_by_price": {
+    "2023": "trunk",
+    "2024": "trunk",
+    "2025": "trunk"
+  },
+  "sensitivity_plans": [
+    "nothing",
+    "2MWh@far_wind",
+    "4MWh@far_wind",
+    "8MWh@far_wind",
+    "2MWh@near_wind",
+    "4MWh@near_wind",
+    "8MWh@near_wind",
+    "2MWh@upstream",
+    "4MWh@upstream",
+    "8MWh@upstream",
+    "2MWh@head",
+    "4MWh@head",
+    "8MWh@head",
+    "2MWh@leaf",
+    "4MWh@leaf",
+    "8MWh@leaf",
+    "trunk",
+    "2MWh@far_wind+trunk",
+    "4MWh@far_wind+trunk",
+    "8MWh@far_wind+trunk",
+    "2MWh@near_wind+trunk",
+    "4MWh@near_wind+trunk",
+    "8MWh@near_wind+trunk",
+    "2MWh@upstream+trunk",
+    "4MWh@upstream+trunk",
+    "8MWh@upstream+trunk",
+    "wind_lines",
+    "2MWh@far_wind+wind_lines",
+    "4MWh@far_wind+wind_lines",
+    "8MWh@far_wind+wind_lines",
+    "2MWh@near_wind+wind_lines",
+    "4MWh@near_wind+wind_lines",
+    "8MWh@near_wind+wind_lines",
+    "2MWh@upstream+wind_lines",
+    "4MWh@upstream+wind_lines",
+    "8MWh@upstream+wind_lines"
+  ],
+  "curtail_sensitivity": {
+    "40.0": {
+      "best_plan": "nothing",
+      "expected_cost": 26856.21037828234,
+      "central_plan": "nothing",
+      "vss": 0.0,
+      "evpi_total": 12197.821134840251,
+      "evpi_weather": 524.647564632789,
+      "evpi_price": 7.275957614183426e-12,
+      "evpi_der": 12197.821134840251,
+      "evpi_load": 7.275957614183426e-12
+    },
+    "120.0": {
+      "best_plan": "trunk",
+      "expected_cost": 35088.774498336395,
+      "central_plan": "trunk",
+      "vss": 0.0,
+      "evpi_total": 11601.360236238274,
+      "evpi_weather": 0.0,
+      "evpi_price": 0.0,
+      "evpi_der": 8654.306933156186,
+      "evpi_load": -7.275957614183426e-12
+    }
+  },
+  "slack_voltage_sensitivity": {
+    "1.0": {
+      "best_plan": "nothing",
+      "expected_cost": 7790.347236746928,
+      "central_plan": "nothing",
+      "vss": 0.0,
+      "evpi_total": 869.54857637443,
+      "evpi_weather": 0.0,
+      "evpi_price": 0.0,
+      "evpi_der": 0.0,
+      "evpi_load": 0.0,
+      "curtailed_mwh_no_action": 97.37934045933659
+    },
+    "1.01": {
+      "best_plan": "nothing",
+      "expected_cost": 20874.00814957521,
+      "central_plan": "nothing",
+      "vss": 0.0,
+      "evpi_total": 11933.609583971716,
+      "evpi_weather": 0.0,
+      "evpi_price": 3.637978807091713e-12,
+      "evpi_der": 11933.609583971716,
+      "evpi_load": 0.0,
+      "curtailed_mwh_no_action": 260.92510186969014
+    },
+    "1.03": {
+      "best_plan": "trunk",
+      "expected_cost": 48966.29403151609,
+      "central_plan": "trunk",
+      "vss": 0.0,
+      "evpi_total": 9799.231439023766,
+      "evpi_weather": 7.275957614183426e-12,
+      "evpi_price": 7.275957614183426e-12,
+      "evpi_der": 9799.231439023766,
+      "evpi_load": 7.275957614183426e-12,
+      "curtailed_mwh_no_action": 1524.4434600735017
+    }
+  },
+  "copper_plate": {
+    "chosen": "nothing",
+    "believed_cost": 0.0,
+    "real_cost": 53712.42075656468,
+    "regret_against_best": 18780.828513465487
+  },
+  "copper_plate_cheap_battery": {
+    "battery_eur_kwh": 150,
+    "chosen": "8MWh@far_wind",
+    "chosen_size_mwh": 8.0,
+    "believed_cost": -74182.71344635199,
+    "real_cost_by_site": {
+      "8MWh@far_wind": 45.31948748191644,
+      "8MWh@near_wind": -3899.6228828513763,
+      "8MWh@upstream": -20765.76073641095,
+      "8MWh@head": -20654.087433167362,
+      "8MWh@leaf": -20765.760736410954
+    },
+    "real_best": "8MWh@upstream+trunk",
+    "real_best_cost": -39248.15444749141
+  },
+  "inputs": {
+    "weather_years": [
+      2010,
+      2024,
+      1995
+    ],
+    "weather_annual_cf": [
+      0.1859,
+      0.2064,
+      0.2187
+    ],
+    "feeder_km": 12.71,
+    "buses": 12,
+    "wind_mw": 3.7,
+    "pv_mw": 1.555,
+    "peak_load_mw": 0.7950840730000001,
+    "rep_days_per_pair": 78
+  }
+}
