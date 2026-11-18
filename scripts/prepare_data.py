@@ -1,7 +1,7 @@
 """Build data/inputs.npz from SimBench, ERA5 capacity factors and SMARD prices.
 
-ERA5 capacity factors come from https://github.com/michaelserikov/de-power-adequacy and SMARD
-day-ahead prices from https://github.com/michaelserikov/de-power-market-ppa, as local sibling clones.
+ERA5 capacity factors come from https://github.com/serikov-energy-systems/de-power-adequacy and SMARD
+day-ahead prices from https://github.com/serikov-power-markets/de-power-market-ppa, as local sibling clones.
 The study itself reads only data/inputs.npz.
 """
 

@@ -107,5 +107,5 @@ the option to wait, which growth uncertainty makes valuable, is not priced.
 `pip install -e ".[grid,test]"`, `pytest`, then `python scripts/run_study.py` (sensitivities and checks, about 3
 hours on six cores) and `python scripts/run_full_year.py` (base case, about 1 h 45 min, compares against the
 table of the first script). `data/inputs.npz` holds the prepared inputs; `scripts/prepare_data.py` rebuilds them
-from SimBench and local clones of [de-power-adequacy](https://github.com/michaelserikov/de-power-adequacy) and
-[de-power-market-ppa](https://github.com/michaelserikov/de-power-market-ppa).
+from SimBench and local clones of [de-power-adequacy](https://github.com/serikov-energy-systems/de-power-adequacy) and
+[de-power-market-ppa](https://github.com/serikov-power-markets/de-power-market-ppa).
