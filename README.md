@@ -1,4 +1,4 @@
-# Battery or reinforcement on a medium-voltage feeder
+# Battery or reinforcement on a medium-voltage feeder (v0.2: N-1 security and reliability)
 
 Should a wind-heavy rural feeder get a battery, a parallel cable or nothing, when weather, prices, renewable
 growth and load growth are all uncertain, and which uncertainty is worth resolving first? A two-stage planning
@@ -79,6 +79,48 @@ At 1.00 pu the feeder needs no investment and the growth question stops matterin
 the model, but the model charges nothing for it and holds no other feeder on the same transformer, whose customers
 may need the higher voltage. It shows what to check first, not that a lower setpoint is available.
 
+## v0.2: N-1 security, restoration and reliability in the plan choice
+
+A feeder plan is also judged by what happens after a fault. v0.2 adds the N-1 criterion and an expected reliability
+cost to the plan choice (`src/feederrisk/postfault.py`, `python scripts/run_n1.py`, results in `results/n1_*.csv` and
+`results/summary_n1.json`).
+
+**Model.** After the outage of one line the feeder is a tree again: a line with a parallel circuit keeps one cable in
+service (no interruption), a normally open tie between the far ends of the two branches (3 km, 21.0 kEUR per year,
+the open point of a ring) is closed after manual switching (1 hour), and everything else waits for the repair (8
+hours). For every line, hour of the year and scenario, voltage band and thermal limits of the post-fault tree are
+checked with linearized flow, allowing the renewable generation to be curtailed in four steps; hours with no feasible
+step are not restored. The cost of a fault is energy not supplied at 10 EUR/kWh plus lost and curtailed renewable
+energy at 80 EUR/MWh, weighted by 0.05 faults per km and year and averaged over the start hour. Fault rate, repair and
+switching times, tie length and value of lost load are illustrative assumptions in `postfault.Reliability`.
+Batteries are grid-following and do not island, so they carry no reliability value.
+
+| Plan | Annual capital, kEUR | Reliability cost, kEUR | Expected annual cost, kEUR | Energy not supplied, MWh/y |
+|---|---|---|---|---|
+| Cable on the trunk | 34.6 | 6.9 | **41.9** | 0.69 |
+| Cable on all wind lines | 37.4 | 6.7 | 44.1 | 0.66 |
+| Cable on the trunk + tie | 55.6 | 1.0 | 56.9 | 0.09 |
+| Nothing | 0 | 11.1 | 67.2 | 1.08 |
+| Tie only | 21.0 | 2.9 | 80.0 | 0.27 |
+| Cable on every line (12.7 km) | 88.9 | 0.0 | 88.9 | 0 |
+
+- **The trunk cable is also the N-1 plan.** It protects the four trunk lines (0.75 km plus the 4.2 km wind line) in all hours at any load, which
+  removes 4.2 of the 11.1 kEUR reliability cost of doing nothing. The ranking of plans does not change; the lead over
+  nothing grows from 21.2 to 25.4 kEUR per year, and the value of learning the renewable growth falls from 14.2 to
+  11.1 kEUR per year, because the cable now pays under every growth level.
+- **Full N-1 is expensive here.** The only plan in which every line fault is restored without interruption is a parallel
+  cable on every line: 47 kEUR per year more than the best plan (88.9 against 41.9). The tie restores every branch
+  fault that has a loop through it (the long lines 3 and 4 carry 0.46 of the 0.64 faults per year) but not a fault on
+  the 0.75 km head, where no other source exists, and not on a leaf line.
+- **The tie pays only at a high value of lost load.** With the trunk cable in place, adding the tie wins above 36
+  EUR/kWh at 0.05 faults per km and year, above 30 EUR/kWh at twice that rate and above 10 EUR/kWh at twice the rate
+  and half the tie cost (`results/n1_sensitivity.csv`). At 100 EUR/kWh the tie is in the best plan in every case.
+- **AC check of the post-fault states** (pandapower, 70 combinations of plan structure, line and scenario, 36,120
+  hours, `results/n1_ac_check.csv`): the linear verdict (restored or not, at the curtailment step it chose) agrees
+  with AC power flow in every hour, with no voltage violation and no line above 87% loading. The linearized voltage is
+  off by up to 0.001 pu on the feeder as built and by up to 0.023 pu on the reverse-fed branch through the tie, where
+  the path is 7 to 8 km long and losses matter; the verdict is not sensitive to that error at these loads.
+
 ## Checks
 
 - **Representative days against all 365 days.** Same best plan, but they understate arbitrage by about 15% and the
@@ -99,12 +141,12 @@ One synthetic feeder and illustrative costs, so the numbers do not transfer and 
 Three weather and three price years. Each day starts and ends the battery half full and knows that day's prices,
 wind and load, so arbitrage is an upper bound with no forecast error. Price-taker, day-ahead only, no balancing
 markets. Losses are neglected and reactive flows fixed in the LP. Inverter reactive power, controllable
-transformers and flexible connections are not among the plans. Plans are built once, with no staging over time, so
+transformers and flexible connections are not among the plans. Reliability uses assumed fault rates, repair times and value of lost load, no outage data, and no islanding by batteries. Plans are built once, with no staging over time, so
 the option to wait, which growth uncertainty makes valuable, is not priced.
 
 ## Run
 
-`pip install -e ".[grid,test]"`, `pytest`, then `python scripts/run_study.py` (sensitivities and checks, about 3
+`pip install -e ".[grid,test]"`, `pytest`, then `python scripts/run_n1.py` for v0.2 (needs the base-case table; about 25 minutes for the one new plan on six cores), and `python scripts/run_study.py` (sensitivities and checks, about 3
 hours on six cores) and `python scripts/run_full_year.py` (base case, about 1 h 45 min, compares against the
 table of the first script). `data/inputs.npz` holds the prepared inputs; `scripts/prepare_data.py` rebuilds them
 from SimBench and local clones of [de-power-adequacy](https://github.com/serikov-energy-systems/de-power-adequacy) and

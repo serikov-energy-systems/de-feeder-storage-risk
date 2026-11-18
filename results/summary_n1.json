@@ -1,0 +1,56 @@
+{
+  "assumptions": {
+    "fault_per_km_y": 0.05,
+    "repair_h": 8.0,
+    "switching_h": 1.0,
+    "tie_km": 3.0,
+    "tie_annual_capex_keur": 20.980138019772593,
+    "voll_eur_kwh": 10.0
+  },
+  "tie_buses": [
+    11,
+    6
+  ],
+  "best_without_reliability": {
+    "plan": "trunk",
+    "expected_keur": 34.93159224309919
+  },
+  "best_with_reliability": {
+    "plan": "trunk",
+    "expected_keur": 41.86851500912221
+  },
+  "evpi_weather_without": 612.7501551734385,
+  "evpi_weather_with": 0.0,
+  "evpi_price_without": 1232.602151806961,
+  "evpi_price_with": 1232.602151806961,
+  "evpi_der_without": 14236.019980034453,
+  "evpi_der_with": 11127.406762760525,
+  "evpi_load_without": 0.0,
+  "evpi_load_with": 0.0,
+  "evpi_total_without": 15567.992613095732,
+  "evpi_total_with": 12907.403777470161,
+  "central_plan_with": "nothing",
+  "worst_restored_hours_share": {
+    "nothing": 0.0,
+    "tie": 0.0,
+    "trunk": 0.0,
+    "trunk+tie": 0.0,
+    "all_lines": 1.0
+  },
+  "price_of_full_n1": {
+    "all_lines_expected_keur": 88.91868211059244,
+    "best_expected_keur": 41.86851500912221,
+    "difference_keur": 47.05016710147024
+  },
+  "breakeven_voll_for_a_tie_eur_kwh": 36.0,
+  "ac_check": {
+    "cases": 70,
+    "hours": 36120,
+    "agree_share": 1.0,
+    "false_feasible_hours": 0,
+    "false_infeasible_hours": 0,
+    "v_err_max_pu": 0.023010693561843487,
+    "violation_v_max_pu": 0.0,
+    "loading_max_pct": 87.03860618463696
+  }
+}
